@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="188dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.007"
+            android:layout_marginLeft="188dp" >
+            <CustomAttribute
+                app:attributeName="BackgroundColor"
+                app:customColorValue="#D81B60"/>
+        </Constraint>
+        <Constraint
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            android:id="@+id/chip4"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+        <Constraint
+            app:layout_constraintBottom_toBottomOf="@+id/spinner"
+            android:id="@+id/autoCompleteTextView" />
+        <Constraint
+            app:layout_editor_absoluteX="54dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/toggleButton" />
+        <Constraint
+            app:layout_editor_absoluteY="518dp"
+            app:layout_editor_absoluteX="267dp"
+            android:id="@+id/switch1" />
+        <Constraint
+            app:layout_editor_absoluteY="604dp"
+            app:layout_editor_absoluteX="339dp"
+            android:id="@+id/floatingActionButton" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="16dp"
+            app:layout_constraintVertical_bias="0.623" >
+            <CustomAttribute
+                app:attributeName="BackgroundColor"
+                app:customColorValue="#7AD81B"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="1000">
+        <OnClick
+            app:touchAnchorId="@+id/textView"
+            app:touchAnchorSide="right"
+            app:dragDirection="dragRight"
+            />
+        <KeyFrameSet>
+            <KeyPosition
+                app:keyPositionType="pathRelative"
+                app:percentY="-0.25"
+                app:framePosition="50"
+                app:motionTarget="@id/textView"/>
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>
