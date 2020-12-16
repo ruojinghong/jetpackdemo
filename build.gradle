@@ -19,6 +19,8 @@ buildscript {
         //tim
         maven { url "https://mirrors.tencent.com/repository/maven/tencent_public" }
         maven { url 'http://developer.huawei.com/repo/' }
+
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -33,6 +35,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
     }
 }
 
