@@ -1,10 +1,12 @@
 package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
 import com.sxy.jetpackdemo.app.ext.init
 import com.sxy.jetpackdemo.app.ext.initMain
+import com.sxy.jetpackdemo.app.ext.interceptLongClick
 import com.sxy.jetpackdemo.app.viewmodel.state.MainViewModel
 
 import com.sxy.jetpackdemo.databinding.FragmentMainBinding
@@ -43,7 +45,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
 
     override fun createObserver() {
         appViewModel.appColor.observe(viewLifecycleOwner, Observer {
-            setUiTheme(it, mainBottom)
+//            setUiTheme(it, mainBottom)
         })
     }
 

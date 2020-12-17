@@ -27,6 +27,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.sxy.jetpackdemo.app.ui.fragment.HomeFragment
+import com.sxy.jetpackdemo.app.ui.fragment.ProjectFragment
 import com.sxy.jetpackdemo.app.util.SettingUtil
 
 import me.hgj.jetpackmvvm.base.appContext
@@ -59,21 +60,21 @@ fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
                 1 -> {
                     return ProjectFragment()
                 }
-                2 -> {
-                    return TreeArrFragment()
-                }
-                3 -> {
-                    return PublicNumberFragment()
-                }
-                4 -> {
-                    return MeFragment()
-                }
+//                2 -> {
+//                    return TreeArrFragment()
+//                }
+//                3 -> {
+//                    return PublicNumberFragment()
+//                }
+//                4 -> {
+//                    return MeFragment()
+//                }
                 else -> {
                     return HomeFragment()
                 }
             }
         }
-        override fun getItemCount() = 5
+        override fun getItemCount() = 2
     }
     return this
 }
@@ -122,6 +123,16 @@ fun hideSoftKeyboard(activity: Activity?) {
             )
         }
     }
+}
+
+
+/**
+ * 初始化普通的toolbar 只设置标题
+ */
+fun Toolbar.init(titleStr: String = ""): Toolbar {
+    setBackgroundColor(SettingUtil.getColor(appContext))
+    title = titleStr
+    return this
 }
 
 

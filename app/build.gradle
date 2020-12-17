@@ -9,13 +9,18 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
+
+
     defaultConfig {
         applicationId "com.sxy.notification"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
+        ndk {
+            // 设置支持的SO库架构 一般只设置这个就阔以设配所有的设备了，还可以减少apk的大小
+            abiFilters 'armeabi','armeabi-v7a'
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,6 +53,10 @@ dependencies {
     api rootProject.deps["utilcodex"]
     api rootProject.deps["multidex"]
     api rootProject.deps["bottomnavigationviewex"]
+    api rootProject.deps["crashreport_upgrade"]
+    api rootProject.deps["nativecrashreport"]
+    api rootProject.deps["customactivityoncrash"]
+    api rootProject.deps["BannerViewPager"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
 

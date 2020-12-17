@@ -141,13 +141,13 @@ fun Fragment.joinQQGroup(key: String): Boolean {
 /**
  * 拦截登录操作，如果没有登录跳转登录，登录过了则执行你的方法
  */
-fun NavController.jumpByLogin(action: (NavController) -> Unit) {
-    if (CacheUtil.isLogin()) {
-        action(this)
-    } else {
-        this.navigateAction(R.id.action_to_loginFragment)
-    }
-}
+//fun NavController.jumpByLogin(action: (NavController) -> Unit) {
+//    if (CacheUtil.isLogin()) {
+//        action(this)
+//    } else {
+//        this.navigateAction(R.id.action_to_loginFragment)
+//    }
+//}
 
 /**
  * 拦截登录操作，如果没有登录执行方法 actionLogin 登录过了执行 action

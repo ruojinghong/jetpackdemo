@@ -7,8 +7,8 @@ ext{
             compileSdkVersion : 30,
             buildToolsVersion :"30.0.2",
             minSdkVersion    : 21,
-            targetSdkVersion : 28,
-            versionCode      : 68, //4位
+            targetSdkVersion :30,
+            versionCode      : 1000, //4位
             versionName      : "1.4" //3或者4位 3.9.3.2 ，3.9.3 跟versionCode成对应关系3932，3930
 
 
@@ -17,8 +17,8 @@ ext{
             compileSdkVersion :30,
             buildToolsVersion :"30.0.2",
             minSdkVersion    : 21,
-            targetSdkVersion : 28,
-            versionCode      : 68, //4位
+            targetSdkVersion : 30,
+            versionCode      : 1000, //4位
             versionName      : "1.4" ,//3或者4位 3.9.3.2 ，3.9.3 跟versionCode成对应关系3932，3930
 
 
@@ -65,7 +65,14 @@ ext{
             "utilcodex":"com.blankj:utilcodex:1.26.0",
             "multidex":"com.android.support:multidex:1.0.3",
             //底部bottomBarf
-            "bottomnavigationviewex":"com.github.ittianyu:BottomNavigationViewEx:2.0.4"
+            "bottomnavigationviewex":"com.github.ittianyu:BottomNavigationViewEx:2.0.4",
+            //Bugly
+            "crashreport_upgrade" : "com.tencent.bugly:crashreport_upgrade:1.4.5",
+            "nativecrashreport" : "com.tencent.bugly:nativecrashreport:3.7.1",
+            //防崩溃
+            "customactivityoncrash": "cat.ereza:customactivityoncrash:2.3.0",
+            //轮播图
+            "BannerViewPager": "com.github.zhpanvip:BannerViewPager:3.1.5"
     ]
 
 
