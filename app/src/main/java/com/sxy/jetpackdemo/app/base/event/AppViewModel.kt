@@ -1,12 +1,13 @@
 package com.sxy.jetpackdemo.app.base.event
 
 
+import com.sxy.jetpackdemo.app.data.model.bean.UserInfo
+import com.sxy.jetpackdemo.app.util.CacheUtil
+import com.sxy.jetpackdemo.app.util.SettingUtil
 import me.hgj.jetpackmvvm.base.appContext
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
-import me.hgj.jetpackmvvm.demo.app.util.CacheUtil
-import me.hgj.jetpackmvvm.demo.app.util.SettingUtil
-import me.hgj.jetpackmvvm.demo.data.model.bean.UserInfo
+
 
 /**
  * 作者　: hegaojian

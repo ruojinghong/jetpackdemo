@@ -72,7 +72,9 @@ ext{
             //防崩溃
             "customactivityoncrash": "cat.ereza:customactivityoncrash:2.3.0",
             //轮播图
-            "BannerViewPager": "com.github.zhpanvip:BannerViewPager:3.1.5"
+            "BannerViewPager": "com.github.zhpanvip:BannerViewPager:3.1.5",
+            "swiperefreshlayout": "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+            "yanzhenjie.recyclerview": "com.yanzhenjie.recyclerview:x:1.3.2"
     ]
 
 

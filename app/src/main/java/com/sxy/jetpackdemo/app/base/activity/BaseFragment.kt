@@ -5,9 +5,9 @@ import androidx.databinding.ViewDataBinding
 import me.hgj.jetpackmvvm.base.fragment.BaseVmDbFragment
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.sxy.jetpackdemo.app.base.event.AppViewModel
-import me.hgj.jetpackmvvm.demo.app.event.EventViewModel
+import com.sxy.jetpackdemo.app.ext.hideSoftKeyboard
+import com.sxy.jetpackdemo.app.base.event.EventViewModel
 import me.hgj.jetpackmvvm.demo.app.ext.dismissLoadingExt
-import me.hgj.jetpackmvvm.demo.app.ext.hideSoftKeyboard
 import me.hgj.jetpackmvvm.demo.app.ext.showLoadingExt
 import me.hgj.jetpackmvvm.ext.getAppViewModel
 

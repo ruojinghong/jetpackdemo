@@ -25,8 +25,10 @@ import me.hgj.jetpackmvvm.ext.util.logd
  * @date: 2020/12/16
  * @description:
  */
-object App :BaseApp() {
-    lateinit var instance: App
+class App :BaseApp() {
+    companion object {
+        lateinit var instance: App
+    }
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate() {

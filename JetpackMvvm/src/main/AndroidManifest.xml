@@ -5,7 +5,7 @@
     <application>
         <provider
             android:authorities="${applicationId}.KtxInstaller"
-            android:name="com.sxy.notification.base.Ktx"
+            android:name=".base.Ktx"
             android:exported="false"/>
     </application>
 </manifest>

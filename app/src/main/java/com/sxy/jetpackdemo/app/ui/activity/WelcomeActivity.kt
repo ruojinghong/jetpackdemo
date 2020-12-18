@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseActivity
-import com.sxy.jetpackdemo.app.base.viewmodel.BaseViewModel
 import com.sxy.jetpackdemo.app.util.CacheUtil
 import com.sxy.jetpackdemo.app.util.SettingUtil
 import com.sxy.jetpackdemo.app.weight.banner.WelcomeBannerAdapter
@@ -13,6 +12,7 @@ import com.sxy.jetpackdemo.app.weight.banner.WelcomeBannerViewHolder
 import com.sxy.jetpackdemo.databinding.ActivityWelcomeBinding
 import com.zhpan.bannerview.BannerViewPager
 import kotlinx.android.synthetic.main.activity_welcome.*
+import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.view.gone
 import me.hgj.jetpackmvvm.ext.view.visible
 

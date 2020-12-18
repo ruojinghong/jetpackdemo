@@ -42,6 +42,8 @@ fun AppCompatActivity.showLoadingExt(message: String = "请求网络中") {
     }
 }
 
+
+
 /**
  * 打开等待框
  */

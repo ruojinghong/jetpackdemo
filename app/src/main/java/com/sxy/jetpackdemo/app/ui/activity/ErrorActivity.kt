@@ -9,7 +9,6 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.blankj.utilcode.util.ToastUtils
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseActivity
-import com.sxy.jetpackdemo.app.base.viewmodel.BaseViewModel
 import com.sxy.jetpackdemo.app.ext.init
 import com.sxy.jetpackdemo.app.ext.showMessage
 import com.sxy.jetpackdemo.app.util.SettingUtil
@@ -17,6 +16,7 @@ import com.sxy.jetpackdemo.app.util.StatusBarUtil
 import com.sxy.jetpackdemo.databinding.ActivityErrorBinding
 import kotlinx.android.synthetic.main.activity_error.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.util.clipboardManager
 import me.hgj.jetpackmvvm.ext.view.clickNoRepeat
 
