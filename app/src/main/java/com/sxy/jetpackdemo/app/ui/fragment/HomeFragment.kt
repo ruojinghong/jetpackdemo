@@ -13,6 +13,8 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
  */
 class HomeFragment : BaseFragment<BaseViewModel,FragmentMainBinding>() {
     override fun layoutId(): Int = R.layout.fragment_home
+    //适配器
+    private val articleAdapter :Airtic
 
     override fun initView(savedInstanceState: Bundle?) {
         TODO("Not yet implemented")

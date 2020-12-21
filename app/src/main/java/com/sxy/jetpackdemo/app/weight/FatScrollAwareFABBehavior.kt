@@ -1,5 +1,7 @@
 package com.sxy.jetpackdemo.app.weight
 
+import android.content.Context
+import android.util.AttributeSet
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
@@ -10,7 +12,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  * @date: 2020/12/21
  * @description: 自定义behavior fab上划显示 下滑隐藏
  */
-class FatScrollAwareFABBehavior : FloatingActionButton.Behavior(){
+class FatScrollAwareFABBehavior : FloatingActionButton.Behavior{
+
+    constructor(context: Context,attributeSet: AttributeSet): super(context,attributeSet)
 
 
     override fun onStartNestedScroll(
