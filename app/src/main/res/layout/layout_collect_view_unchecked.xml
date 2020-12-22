@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scaleType="fitCenter"
-    android:src="@drawable/ic_favorite"
-    android:tint="@color/windowBackground"/>
+    android:src="@mipmap/ic_favorite"
+    android:tint="@color/background"/>

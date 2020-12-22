@@ -1,0 +1,35 @@
+package com.sxy.jetpackdemo.app.data.model.bean
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
+
+/**
+ * @author: sxy
+ * @date: 2020/12/22
+ * @description: 分页数据基类
+ */
+data class ApiPagerResponse<T>(
+    var datas: T,
+    var curPage: Int,
+    var offset: Int,
+    var over: Boolean,
+    var pageCount: Int,
+    var size: Int,
+    var total: Int
+) : Serializable {
+    /**
+     * 数据是否为空
+     */
+    fun isEmpty() = (datas as List<*>).size == 0
+
+    /**
+     * 是否为刷新
+     */
+    fun isRefresh() = offset == 0
+
+    /**
+     * 是否还有更多数据
+     */
+    fun hasMore() = !over
+}

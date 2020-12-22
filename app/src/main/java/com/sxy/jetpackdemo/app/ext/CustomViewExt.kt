@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.chad.library.adapter.base.BaseQuickAdapter
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
@@ -58,7 +59,7 @@ fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
                     return HomeFragment()
                 }
                 1 -> {
-                    return ProjectFragment()
+                    return HomeFragment()
                 }
 //                2 -> {
 //                    return TreeArrFragment()
@@ -133,6 +134,34 @@ fun Toolbar.init(titleStr: String = ""): Toolbar {
     setBackgroundColor(SettingUtil.getColor(appContext))
     title = titleStr
     return this
+}
+
+//设置适配器的列表动画
+fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
+    //等于0，关闭列表动画 否则开启
+    if (mode == 0) {
+        animationEnable = false
+    } else {
+        animationEnable = true
+        setAnimationWithDefault(BaseQuickAdapter.AnimationType.values()[mode - 1])
+    }
+}
+
+/**
+ * 设置加载中
+ */
+fun LoadService<*>.showLoading() {
+    this.showCallback(LoadingCallback::class.java)
+}
+
+fun loadServiceInit(view: View, callback: () -> Unit): LoadService<Any> {
+    val loadsir = LoadSir.getDefault().register(view) {
+        //点击重试时触发的操作
+        callback.invoke()
+    }
+    loadsir.showSuccess()
+    SettingUtil.setLoadingColor(SettingUtil.getColor(appContext), loadsir)
+    return loadsir
 }
 
 
