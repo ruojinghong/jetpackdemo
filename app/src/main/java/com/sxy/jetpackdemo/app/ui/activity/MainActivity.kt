@@ -53,9 +53,9 @@ class MainActivity : BaseActivity<BaseViewModel,ActivityMainBinding>(){
     override fun onNetworkStateChanged(netState: NetState) {
         super.onNetworkStateChanged(netState)
         if (netState.isSuccess) {
-            Toast.makeText(applicationContext, "我特么终于有网了啊!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "我特么终于有网了啊", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(applicationContext, "我特么怎么断网了!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "我特么怎么断网了，发生什么事了", Toast.LENGTH_SHORT).show()
         }
     }
 }
