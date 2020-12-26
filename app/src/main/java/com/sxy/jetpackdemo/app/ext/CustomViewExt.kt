@@ -18,6 +18,7 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -27,9 +28,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
+import com.sxy.jetpackdemo.R
+import com.sxy.jetpackdemo.app.network.stateCallback.ListDataUiState
 import com.sxy.jetpackdemo.app.ui.fragment.HomeFragment
 import com.sxy.jetpackdemo.app.ui.fragment.ProjectFragment
 import com.sxy.jetpackdemo.app.util.SettingUtil
+import com.sxy.jetpackdemo.app.weight.recyclerview.DefineLoadMoreView
+import com.yanzhenjie.recyclerview.SwipeRecyclerView
 
 import me.hgj.jetpackmvvm.base.appContext
 
@@ -61,21 +66,24 @@ fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
                 1 -> {
                     return HomeFragment()
                 }
-//                2 -> {
+                2 -> {
 //                    return TreeArrFragment()
-//                }
-//                3 -> {
+                    return HomeFragment()
+                }
+                3 -> {
 //                    return PublicNumberFragment()
-//                }
-//                4 -> {
+                    return HomeFragment()
+                }
+                4 -> {
 //                    return MeFragment()
-//                }
+                    return HomeFragment()
+                }
                 else -> {
                     return HomeFragment()
                 }
             }
         }
-        override fun getItemCount() = 2
+        override fun getItemCount() = 5
     }
     return this
 }
@@ -162,6 +170,140 @@ fun loadServiceInit(view: View, callback: () -> Unit): LoadService<Any> {
     loadsir.showSuccess()
     SettingUtil.setLoadingColor(SettingUtil.getColor(appContext), loadsir)
     return loadsir
+}
+
+//绑定SwipeRecyclerView
+fun SwipeRecyclerView.init(
+    layoutManger: RecyclerView.LayoutManager,
+    bindAdapter: RecyclerView.Adapter<*>,
+    isScroll: Boolean = true
+): SwipeRecyclerView {
+    layoutManager = layoutManger
+    setHasFixedSize(true)
+    adapter = bindAdapter
+    isNestedScrollingEnabled = isScroll
+    return this
+}
+
+fun SwipeRecyclerView.initFooter(loadmoreListener: SwipeRecyclerView.LoadMoreListener): DefineLoadMoreView {
+    val footerView = DefineLoadMoreView(appContext)
+    //给尾部设置颜色
+    footerView.setLoadViewColor(SettingUtil.getOneColorStateList(appContext))
+    //设置尾部点击回调
+    footerView.setLoadMoreListener(SwipeRecyclerView.LoadMoreListener {
+        footerView.onLoading()
+        loadmoreListener.onLoadMore()
+    })
+    this.run {
+        //添加加载更多尾部
+        addFooterView(footerView)
+        setLoadMoreView(footerView)
+        //设置加载更多回调
+        setLoadMoreListener(loadmoreListener)
+    }
+    return footerView
+}
+
+fun RecyclerView.initFloatBtn(floatbtn: FloatingActionButton) {
+    //监听recyclerview滑动到顶部的时候，需要把向上返回顶部的按钮隐藏
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        @SuppressLint("RestrictedApi")
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (!canScrollVertically(-1)) {
+                floatbtn.visibility = View.INVISIBLE
+            }
+        }
+    })
+    floatbtn.backgroundTintList = SettingUtil.getOneColorStateList(appContext)
+    floatbtn.setOnClickListener {
+        val layoutManager = layoutManager as LinearLayoutManager
+        //如果当前recyclerview 最后一个视图位置的索引大于等于40，则迅速返回顶部，否则带有滚动动画效果返回到顶部
+        if (layoutManager.findLastVisibleItemPosition() >= 40) {
+            scrollToPosition(0)//没有动画迅速返回到顶部(马上)
+        } else {
+            smoothScrollToPosition(0)//有滚动动画返回到顶部(有点慢)
+        }
+    }
+}
+
+//初始化 SwipeRefreshLayout
+fun SwipeRefreshLayout.init(onRefreshListener: () -> Unit ) {
+    this.run {
+        setOnRefreshListener {
+            onRefreshListener.invoke()
+        }
+        //设置主题颜色
+        setColorSchemeColors(SettingUtil.getColor(appContext))
+    }
+}
+
+/**
+ * 加载列表数据
+ */
+fun <T> loadListData(
+    data: ListDataUiState<T>,
+    baseQuickAdapter: BaseQuickAdapter<T, *>,
+    loadService: LoadService<*>,
+    recyclerView: SwipeRecyclerView,
+    swipeRefreshLayout: SwipeRefreshLayout
+) {
+    swipeRefreshLayout.isRefreshing = false
+    recyclerView.loadMoreFinish(data.isEmpty, data.hasMore)
+    if (data.isSuccess) {
+        //成功
+        when {
+            //第一页并没有数据 显示空布局界面
+            data.isFirstEmpty -> {
+                loadService.showEmpty()
+            }
+            //是第一页
+            data.isRefresh -> {
+                baseQuickAdapter.setList(data.listData)
+                loadService.showSuccess()
+            }
+            //不是第一页
+            else -> {
+                baseQuickAdapter.addData(data.listData)
+                loadService.showSuccess()
+            }
+        }
+    } else {
+        //失败
+        if (data.isRefresh) {
+            //如果是第一页，则显示错误界面，并提示错误信息
+            loadService.showError(data.errMessage)
+        } else {
+            recyclerView.loadMoreError(0, data.errMessage)
+        }
+    }
+
+
+}
+
+
+
+/**
+ * 设置空布局
+ */
+fun LoadService<*>.showEmpty() {
+    this.showCallback(EmptyCallback::class.java)
+}
+fun LoadService<*>.setErrorText(message: String) {
+    if (message.isNotEmpty()) {
+        this.setCallBack(ErrorCallback::class.java) { _, view ->
+            view.findViewById<TextView>(R.id.error_text).text = message
+        }
+    }
+}
+
+/**
+ * 设置错误布局
+ * @param message 错误布局显示的提示内容
+ */
+fun LoadService<*>.showError(message: String = "") {
+    this.setErrorText(message)
+    this.showCallback(ErrorCallback::class.java)
 }
 
 

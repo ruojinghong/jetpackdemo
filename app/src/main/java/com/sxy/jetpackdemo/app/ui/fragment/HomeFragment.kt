@@ -1,20 +1,25 @@
 package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kingja.loadsir.core.LoadService
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
-import com.sxy.jetpackdemo.app.ext.init
-import com.sxy.jetpackdemo.app.ext.loadServiceInit
-import com.sxy.jetpackdemo.app.ext.showLoading
+import com.sxy.jetpackdemo.app.ext.*
 import com.sxy.jetpackdemo.app.viewmodel.state.HomeViewModel
 import com.sxy.jetpackdemo.app.ui.adapter.AriticleAdapter
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestCollectViewModel
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestHomeViewModel
 import com.sxy.jetpackdemo.app.weight.recyclerview.DefineLoadMoreView
+import com.sxy.jetpackdemo.app.weight.recyclerview.SpaceItemDecoration
 import com.sxy.jetpackdemo.databinding.FragmentMainBinding
+import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import kotlinx.android.synthetic.main.include_list.*
 import kotlinx.android.synthetic.main.include_recyclerview.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import me.hgj.jetpackmvvm.ext.nav
@@ -61,6 +66,33 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
                 }
                 true
             }
+        }
+        //初始化recyclerview
+        recyclerView.init(LinearLayoutManager(context),articleAdapter).let {
+            //因为首页要添加轮播图，所以我设置了firstNeedTop字段为false,即第一条数据不需要设置间距
+            //添加分割线
+            it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f), false))
+            footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
+                    requestHomeViewModel.getHomeData(false)
+            })
+            //初始化FloatingActionButton
+            it.initFloatBtn(floatbtn)
+        }
+        //初始化 SwipeRefreshLayout
+        swipeRefresh.init {
+            //触发刷新监听时请求数据
+            requestHomeViewModel.getHomeData(true)
+        }
+    }
+
+    override fun createObserver() {
+        super.createObserver()
+        requestHomeViewModel.run {
+            //监听首页文章列表请求的数据变化
+            homeDataState.observe(viewLifecycleOwner, Observer {
+                //设值 新写了个拓展函数，搞死了这个恶心的重复代码
+                loadListData(it, articleAdapter, loadsir, recyclerView, swipeRefresh)
+            })
         }
     }
 }
