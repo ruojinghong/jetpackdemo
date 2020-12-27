@@ -83,6 +83,27 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
             //触发刷新监听时请求数据
             requestHomeViewModel.getHomeData(true)
         }
+            articleAdapter.run {
+              setCollectClick{item, v, position ->
+                    if(v.isChecked){
+                        requestCollectViewModel.uncollect(item.id)
+                    }else{
+                        requestCollectViewModel.collect(item.id)
+                    }
+              }
+
+                setOnItemClickListener { adapter, view, position ->
+                    nav().navigateAction(R.id.action_to_webFragment, Bundle().apply {
+                        putParcelable(
+                            "ariticleData",
+                            articleAdapter.data[position - this@HomeFragment.recyclerView.headerCount]
+                        )
+                    })
+                }
+            }
+
+
+
     }
 
     override fun createObserver() {
