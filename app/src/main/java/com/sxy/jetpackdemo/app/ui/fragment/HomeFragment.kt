@@ -22,6 +22,7 @@ import com.yanzhenjie.recyclerview.SwipeRecyclerView
 import kotlinx.android.synthetic.main.include_list.*
 import kotlinx.android.synthetic.main.include_recyclerview.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import kotlinx.android.synthetic.main.item_ariticle.*
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
 
@@ -99,6 +100,15 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
                             articleAdapter.data[position - this@HomeFragment.recyclerView.headerCount]
                         )
                     })
+                }
+
+                addChildClickViewIds(R.id.item_home_author,R.id.item_project_author)
+                setOnItemClickListener{adapter,view,position ->
+                    when(view.id){
+                        R.id.item_home_author,R.id.item_project_author ->{
+                            nav.navigateAction(R.id.action)
+                        }
+                    }
                 }
             }
 
