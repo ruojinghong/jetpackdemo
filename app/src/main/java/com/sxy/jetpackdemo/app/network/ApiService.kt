@@ -176,14 +176,14 @@ interface ApiService {
     @GET("lg/collect/usertools/json")
     suspend fun getCollectUrlData(): ApiResponse<ArrayList<CollectUrlResponse>>
 //
-//    /**
-//     * 获取他人分享文章列表数据
-//     */
-//    @GET("user/{id}/share_articles/{page}/json")
-//    suspend fun getShareByidData(
-//        @Path("id") id: Int,
-//        @Path("page") page: Int
-//    ): ApiResponse<ShareResponse>
+    /**
+     * 获取他人分享文章列表数据
+     */
+    @GET("user/{id}/share_articles/{page}/json")
+    suspend fun getShareByidData(
+        @Path("id") id: Int,
+        @Path("page") page: Int
+    ): ApiResponse<ShareResponse>
 //
 //    /**
 //     * 获取当前账户的个人积分

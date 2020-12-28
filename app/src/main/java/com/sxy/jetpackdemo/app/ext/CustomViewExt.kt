@@ -144,6 +144,21 @@ fun Toolbar.init(titleStr: String = ""): Toolbar {
     return this
 }
 
+/**
+ * 初始化有返回键的toolbar
+ */
+fun Toolbar.initClose(
+    titleStr: String = "",
+    backImg: Int = R.mipmap.ic_back,
+    onBack: (toolbar: Toolbar) -> Unit
+): Toolbar {
+    setBackgroundColor(SettingUtil.getColor(appContext))
+    title = titleStr.toHtml()
+    setNavigationIcon(backImg)
+    setNavigationOnClickListener { onBack.invoke(this) }
+    return this
+}
+
 //设置适配器的列表动画
 fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
     //等于0，关闭列表动画 否则开启

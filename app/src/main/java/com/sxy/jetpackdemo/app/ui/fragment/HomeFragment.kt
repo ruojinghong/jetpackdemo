@@ -106,7 +106,7 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
                 setOnItemClickListener{adapter,view,position ->
                     when(view.id){
                         R.id.item_home_author,R.id.item_project_author ->{
-                            nav.navigateAction(R.id.action)
+//                            nav.navigateAction(R.id.action)
                         }
                     }
                 }
