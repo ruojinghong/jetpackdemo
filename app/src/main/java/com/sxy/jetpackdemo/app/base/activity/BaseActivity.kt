@@ -3,6 +3,7 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.sxy.jetpackdemo.app.base.event.AppViewModel
 import com.sxy.jetpackdemo.app.base.ext.view.getAppViewModel
+import com.sxy.jetpackdemo.app.event.EventViewModel
 import me.hgj.jetpackmvvm.base.activity.BaseVmDbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.demo.app.ext.dismissLoadingExt
