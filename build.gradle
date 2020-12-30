@@ -34,10 +34,23 @@ buildscript {
 allprojects {
     repositories {
 
-        maven { url "https://jitpack.io" }
-        maven { url "https://maven.google.com" }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url'https://maven.aliyun.com/repository/public/' }
+        maven { url'https://maven.aliyun.com/repository/google/' }
+        maven { url'https://maven.aliyun.com/repository/jcenter/' }
+        maven { url'https://maven.aliyun.com/repository/central/' }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/releases" }
         google()
         jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        // 友盟
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+
+        // tim
+        maven { url "https://mirrors.tencent.com/repository/maven/tencent_public" }
+        maven { url 'http://developer.huawei.com/repo/' }
     }
 }
 
