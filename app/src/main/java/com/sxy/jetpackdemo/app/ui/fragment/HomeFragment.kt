@@ -1,6 +1,7 @@
 package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -10,21 +11,26 @@ import com.blankj.utilcode.util.ToastUtils
 import com.kingja.loadsir.core.LoadService
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
+import com.sxy.jetpackdemo.app.data.model.bean.BannerResponse
 import com.sxy.jetpackdemo.app.ext.*
 import com.sxy.jetpackdemo.app.viewmodel.state.HomeViewModel
 import com.sxy.jetpackdemo.app.ui.adapter.AriticleAdapter
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestCollectViewModel
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestHomeViewModel
+import com.sxy.jetpackdemo.app.weight.banner.HomeBannerAdapter
+import com.sxy.jetpackdemo.app.weight.banner.HomeBannerViewHolder
 import com.sxy.jetpackdemo.app.weight.recyclerview.DefineLoadMoreView
 import com.sxy.jetpackdemo.app.weight.recyclerview.SpaceItemDecoration
 import com.sxy.jetpackdemo.databinding.FragmentMainBinding
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import com.zhpan.bannerview.BannerViewPager
 import kotlinx.android.synthetic.main.include_list.*
 import kotlinx.android.synthetic.main.include_recyclerview.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.item_ariticle.*
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
+import me.hgj.jetpackmvvm.ext.parseState
 
 /**
  * @author: sxy
@@ -106,7 +112,11 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
                 setOnItemClickListener{adapter,view,position ->
                     when(view.id){
                         R.id.item_home_author,R.id.item_project_author ->{
-//                            nav.navigateAction(R.id.action)
+                            nav().navigateAction(R.id.action_mainfragment_to_lookInfoFragment,Bundle().apply {
+
+                                putInt("id",articleAdapter.data[position - this@HomeFragment.recyclerView.headerCount].userId)
+
+                            })
                         }
                     }
                 }
@@ -114,6 +124,13 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
 
 
 
+    }
+
+    override fun lazyLoadData() {
+        super.lazyLoadData()
+        loadsir.showLoading()
+        requestHomeViewModel.getBannerData()
+        requestHomeViewModel.getHomeData(true)
     }
 
     override fun createObserver() {
@@ -124,6 +141,30 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainBinding>() {
                 //设值 新写了个拓展函数，搞死了这个恶心的重复代码
                 loadListData(it, articleAdapter, loadsir, recyclerView, swipeRefresh)
             })
+            bannerData.observe(viewLifecycleOwner, Observer { resultState ->
+                parseState(resultState, { data ->
+                    //请求轮播图数据成功，添加轮播图到headview ，如果等于0说明没有添加过头部，添加一个
+                    if (recyclerView.headerCount == 0) {
+                        val headview = LayoutInflater.from(context).inflate(R.layout.include_banner, null).apply {
+                            findViewById<BannerViewPager<BannerResponse, HomeBannerViewHolder>>(R.id.banner_view).apply {
+                                adapter = HomeBannerAdapter()
+                                setLifecycleRegistry(lifecycle)
+                                setOnPageClickListener {
+                                    nav().navigateAction(R.id.action_to_webFragment, Bundle().apply {putParcelable("bannerdata", data[it])})
+                                }
+                                create(data)
+                            }
+                        }
+                        recyclerView.addHeaderView(headview)
+                        recyclerView.scrollToPosition(0)
+                    }
+                })
+
+
+
+
+            })
+
         }
     }
 }
