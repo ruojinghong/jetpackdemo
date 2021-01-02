@@ -23,7 +23,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-
+        <action
+            android:id="@+id/action_mainfragment_to_LoginRegisterFragment"
+            app:destination="@id/lookInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
        <!-- <action
             android:id="@+id/action_mainfragment_to_searchFragment"
@@ -106,4 +112,7 @@
         android:id="@+id/lookInfoFragment"
         android:name="com.sxy.jetpackdemo.app.ui.fragment.LookInfoFragment"
         android:label="LookInfoFragment" />
+    <fragment android:id="@+id/LoginRegisterFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.LoginFragment"
+        android:label="LoginRegisterFragment"/>
 </navigation>

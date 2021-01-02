@@ -3,11 +3,13 @@ package com.sxy.jetpackdemo.app.data.model.repository.request
 import com.sxy.jetpackdemo.app.data.model.bean.ApiPagerResponse
 import com.sxy.jetpackdemo.app.data.model.bean.ApiResponse
 import com.sxy.jetpackdemo.app.data.model.bean.AriticleResponse
+import com.sxy.jetpackdemo.app.data.model.bean.UserInfo
 import com.sxy.jetpackdemo.app.network.apiService
 import com.sxy.jetpackdemo.app.util.CacheUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import me.hgj.jetpackmvvm.network.AppException
 
 /**
  * @author: sxy
@@ -35,6 +37,20 @@ class HttpRequestManger {
             } else {
                 data.await()
             }
+        }
+    }
+
+    /**
+     * 注册并登陆
+     */
+    suspend fun register(username: String, password: String): ApiResponse<UserInfo> {
+        val registerData = apiService.register(username, password, password)
+        //判断注册结果 注册成功，调用登录接口
+        if (registerData.isSucces()) {
+            return apiService.login(username, password)
+        } else {
+            //抛出错误异常
+            throw AppException(registerData.errorCode, registerData.errorMsg)
         }
     }
 }
