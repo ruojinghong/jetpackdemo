@@ -206,8 +206,8 @@ class WebFragment : BaseFragment<WebViewModel, FragmentWebBinding>(){
                     }
                 } else {
                     //跳转到登录页
-                    ToastUtils.showShort("跳转到登录页未实现")
-//                    nav().navigate(R.id.action_to_loginFragment)
+//                    ToastUtils.showShort("跳转到登录页未实现")
+                    nav().navigate(R.id.action_to_loginFragment)
                 }
             }
             R.id.web_liulanqi -> {

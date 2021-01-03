@@ -41,8 +41,8 @@ class CollectView @JvmOverloads constructor(context: Context, attrs: AttributeSe
                     onCollectViewClickListener?.onClick(this)
                 }else{
                     isChecked = true
-                    ToastUtils.showShort("跳转到登录fragment 暂未实现")
-//                    nav(v).navigateAction(R.id.action_to_loginFragment)
+//                    ToastUtils.showShort("跳转到登录fragment 暂未实现")
+                    nav(v).navigateAction(R.id.action_to_loginFragment)
                 }
 
             }
