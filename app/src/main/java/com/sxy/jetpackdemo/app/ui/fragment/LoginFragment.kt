@@ -28,17 +28,19 @@ import me.hgj.jetpackmvvm.ext.parseState
  * @date: 2021/1/2
  * @description:
  */
-class LoginFragment  : BaseFragment<LoginRegisterViewModel,FragmentLoginBinding>(){
+class LoginFragment : BaseFragment<LoginRegisterViewModel, FragmentLoginBinding>() {
 
     private val requestLoginRegisterViewModel: RequestLoginRegisterViewModel by viewModels()
 
-
-    override fun layoutId(): Int = R.layout.fragment_login
+    override fun layoutId() = R.layout.fragment_login
 
     override fun initView(savedInstanceState: Bundle?) {
+
         mDatabind.viewmodel = mViewModel
+
         mDatabind.click = ProxyClick()
-        toolbar.initClose ("登录"){
+
+        toolbar.initClose("登录") {
             nav().navigateUp()
         }
         //设置颜色跟主题颜色一致
@@ -50,22 +52,23 @@ class LoginFragment  : BaseFragment<LoginRegisterViewModel,FragmentLoginBinding>
     }
 
     override fun createObserver() {
-        super.createObserver()
-        requestLoginRegisterViewModel.
-                loginResult.observe(viewLifecycleOwner, Observer { result ->
-                    parseState(result,{
-                        //登录成功，通知数据改变
-                        CacheUtil.setUser(it)
-//                        CacheUtil.setIsLogin(true)
-                        appViewModel.userinfo.value = it
-                        nav().navigateUp()
-                    },{
-                        //登录失败
-                        showMessage(it.errorMsg)
-                    })
-        })
+        requestLoginRegisterViewModel.loginResult.observe(viewLifecycleOwner,Observer { resultState ->
+            parseState(resultState, { userInfo ->
+                //登录成功 通知账户数据发生改变鸟
+                CacheUtil.setUser(userInfo)
+                CacheUtil.setIsLogin(true)
+                appViewModel.userinfo.value = userInfo
+                nav().navigateUp()
+            }, { appException ->
+                //登录失败
+                showMessage(appException.errorMsg)
+            },{
 
+                showLoading()
+            })
+        })
     }
+
     inner class ProxyClick {
 
         fun clear() {
@@ -85,7 +88,7 @@ class LoginFragment  : BaseFragment<LoginRegisterViewModel,FragmentLoginBinding>
 
         fun goRegister() {
             hideSoftKeyboard(activity)
-            nav().navigateAction(R.id.action_mainfragment_to_LoginRegisterFragment)
+//            nav().navigateAction(R.id.action_loginFragment_to_registerFrgment)
         }
 
         var onCheckedChangeListener =
@@ -93,5 +96,4 @@ class LoginFragment  : BaseFragment<LoginRegisterViewModel,FragmentLoginBinding>
                 mViewModel.isShowPwd.set(isChecked)
             }
     }
-
 }

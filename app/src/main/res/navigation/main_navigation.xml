@@ -8,7 +8,13 @@
         android:id="@+id/mainfragment"
         android:name="com.sxy.jetpackdemo.app.ui.fragment.MainFragment"
         android:label="HomeFragment">
-
+        <action
+            android:id="@+id/action_to_loginFragment"
+            app:destination="@id/LoginRegisterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_to_webFragment"
             app:destination="@id/webFragment"
