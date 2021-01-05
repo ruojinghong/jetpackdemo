@@ -88,7 +88,7 @@ class LoginFragment : BaseFragment<LoginRegisterViewModel, FragmentLoginBinding>
 
         fun goRegister() {
             hideSoftKeyboard(activity)
-//            nav().navigateAction(R.id.action_loginFragment_to_registerFrgment)
+            nav().navigateAction(R.id.action_loginFragment_to_registerFrgment)
         }
 
         var onCheckedChangeListener =
