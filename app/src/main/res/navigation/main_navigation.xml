@@ -150,5 +150,23 @@
     </fragment>
     <fragment android:id="@+id/RegisterFragment"
         android:name="com.sxy.jetpackdemo.app.ui.fragment.RegisterFragment"
-        android:label="RegisterFragment"/>
+        android:label="RegisterFragment">
+
+
+        <action
+            android:id="@+id/action_registerFrgment_to_mainFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/mainfragment" />
+
+        <action
+            android:id="@+id/action_registerFrgment_to_loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/LoginRegisterFragment" />
+    </fragment>
 </navigation>
