@@ -185,11 +185,11 @@ interface ApiService {
         @Path("page") page: Int
     ): ApiResponse<ShareResponse>
 //
-//    /**
-//     * 获取当前账户的个人积分
-//     */
-//    @GET("lg/coin/userinfo/json")
-//    suspend fun getIntegral(): ApiResponse<IntegralResponse>
+    /**
+     * 获取当前账户的个人积分
+     */
+    @GET("lg/coin/userinfo/json")
+    suspend fun getIntegral(): ApiResponse<IntegralResponse>
 //
 //    /**
 //     * 获取积分排行榜

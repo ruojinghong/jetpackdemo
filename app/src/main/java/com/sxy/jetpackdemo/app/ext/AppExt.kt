@@ -163,6 +163,17 @@ fun NavController.jumpByLogin(
     }
 }
 
+/**
+ * 拦截登录操作，如果没有登录跳转登录，登录过了贼执行你的方法
+ */
+fun NavController.jumpByLogin(action: (NavController) -> Unit) {
+    if (CacheUtil.isLogin()) {
+        action(this)
+    } else {
+        this.navigateAction(R.id.action_to_loginFragment)
+    }
+}
+
 
 fun List<*>?.isNull(): Boolean {
     return this?.isEmpty() ?: true

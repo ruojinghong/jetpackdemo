@@ -45,7 +45,7 @@ class LoginFragment : BaseFragment<LoginRegisterViewModel, FragmentLoginBinding>
         }
         //设置颜色跟主题颜色一致
         appViewModel.appColor.value?.let {
-//            SettingUtil.setShapColor(loginSub, it)
+            SettingUtil.setShapColor(loginSub, it)
             loginGoregister.setTextColor(it)
             toolbar.setBackgroundColor(it)
         }

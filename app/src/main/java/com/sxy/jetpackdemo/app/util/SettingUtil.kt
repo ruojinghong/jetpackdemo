@@ -10,6 +10,7 @@ import android.os.Build
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.Utils
 import com.kingja.loadsir.core.LoadService
@@ -106,8 +107,15 @@ object SettingUtil {
      * @param color
      */
     fun setShapColor(view: View, color: Int) {
-        val drawable = view.background as GradientDrawable
-        drawable.setColor(color)
+        if(view is TextView){
+            view.setBackgroundColor(color)
+            return
+        }
+        val drawable = view.background
+
+        (drawable as GradientDrawable).setColor(color)
+
+
     }
 
     /**
