@@ -36,6 +36,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainfragment_to_collectFragment"
+            app:destination="@id/collectFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
        <!-- <action
             android:id="@+id/action_mainfragment_to_searchFragment"
@@ -65,13 +72,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_mainfragment_to_collectFragment"
-            app:destination="@id/collectFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_mainfragment_to_addAriticleFragment"
             app:destination="@id/addAriticleFragment"
@@ -169,4 +170,9 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/LoginRegisterFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/collectFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.CollectFragment"
+        android:label="CollectFragment" />
 </navigation>

@@ -89,8 +89,8 @@ class MeFragment : BaseFragment<MeViewModel,FragmentMeBinding>() {
         /** 收藏 */
         fun collect() {
             nav().jumpByLogin {
-//                it.navigateAction(R.id.action_mainfragment_to_collectFragment)
-                it.navigateAction(R.id.action_to_loginFragment)
+                it.navigateAction(R.id.action_mainfragment_to_collectFragment)
+//                it.navigateAction(R.id.action_to_loginFragment)
             }
         }
 
