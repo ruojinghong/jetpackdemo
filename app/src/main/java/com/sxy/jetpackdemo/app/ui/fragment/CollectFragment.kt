@@ -1,12 +1,18 @@
 package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.ToastUtils
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
+import com.sxy.jetpackdemo.app.ext.bindViewPager2
+import com.sxy.jetpackdemo.app.ext.init
+import com.sxy.jetpackdemo.app.ext.initClose
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestCollectViewModel
 import com.sxy.jetpackdemo.databinding.FragmentCollectBinding
+import kotlinx.android.synthetic.main.fragment_collect.*
+import kotlinx.android.synthetic.main.include_toolbar.*
+import me.hgj.jetpackmvvm.ext.nav
 
 /**
  * @author: sxy
@@ -27,9 +33,21 @@ class CollectFragment : BaseFragment<RequestCollectViewModel,FragmentCollectBind
         val b = a(1)
         val stringPlus: (String, String) -> String = String::plus
         val stirngplus:(String ,String) -> Int = { s, s2 ->s.length  }
-        val intPlus: Int.(Int) -> Int = { a -> this.times(a)
-        }
+        val intPlus: (Int, Int) -> Int = { a,b -> a.times(a)}
 
-        showLoading(b.toString())
+
+            //初始化时设置顶部主题颜色
+            appViewModel.appColor.value?.let { collect_viewpager_linear.setBackgroundColor(it) }
+            //初始化viewpager2
+            collect_view_pager.init(this,fragments)
+            //初始化 magic_indicator
+            collect_magic_indicator.bindViewPager2(collect_view_pager,mStringList = titleData)
+            toolbar.initClose() {
+                nav().navigateUp()
+            }
+
+
+
+
     }
 }
