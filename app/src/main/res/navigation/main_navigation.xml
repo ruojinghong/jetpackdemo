@@ -44,6 +44,14 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_mainfragment_to_integralFragment"
+            app:destination="@id/integralFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
        <!-- <action
             android:id="@+id/action_mainfragment_to_searchFragment"
             app:destination="@id/searchFragment"
@@ -65,13 +73,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_mainfragment_to_integralFragment"
-            app:destination="@id/integralFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+
 
         <action
             android:id="@+id/action_mainfragment_to_addAriticleFragment"
@@ -175,4 +177,17 @@
         android:id="@+id/collectFragment"
         android:name="com.sxy.jetpackdemo.app.ui.fragment.CollectFragment"
         android:label="CollectFragment" />
+
+    <fragment
+        android:id="@+id/integralFragment"
+        android:name="me.hgj.jetpackmvvm.demo.ui.fragment.integral.IntegralFragment"
+        android:label="IntegralFragment">
+        <action
+            android:id="@+id/action_integralFragment_to_integralHistoryFragment"
+            app:destination="@id/integralHistoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

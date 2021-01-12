@@ -97,11 +97,11 @@ class MeFragment : BaseFragment<MeViewModel,FragmentMeBinding>() {
         /** 积分 */
         fun integral() {
             nav().jumpByLogin {
-//                it.navigateAction(R.id.action_mainfragment_to_integralFragment,
-//                    Bundle().apply {
-//                        putParcelable("rank", rank)
-//                    }
-//                )
+                it.navigateAction(R.id.action_mainfragment_to_integralFragment,
+                    Bundle().apply {
+                        putParcelable("rank", rank)
+                    }
+                )
             }
         }
 
