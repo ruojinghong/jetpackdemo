@@ -96,7 +96,7 @@ fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
     return this
 }
 
-fun BottomNavigationViewEx.init(navigationItemSelectedAction: (Int) -> Unit): BottomNavigationViewEx {
+inline fun BottomNavigationViewEx.init(crossinline navigationItemSelectedAction: (Int) -> Unit): BottomNavigationViewEx {
     enableAnimation(true)
     enableShiftingMode(false)
     enableItemShiftingMode(true)
