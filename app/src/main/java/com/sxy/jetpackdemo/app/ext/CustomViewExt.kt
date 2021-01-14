@@ -251,7 +251,7 @@ fun RecyclerView.initFloatBtn(floatbtn: FloatingActionButton) {
 }
 
 //初始化 SwipeRefreshLayout
-fun SwipeRefreshLayout.init(onRefreshListener: () -> Unit ) {
+inline fun SwipeRefreshLayout.init(crossinline onRefreshListener: () -> Unit ) {
     this.run {
         setOnRefreshListener {
             onRefreshListener.invoke()
@@ -264,7 +264,7 @@ fun SwipeRefreshLayout.init(onRefreshListener: () -> Unit ) {
 /**
  * 加载列表数据
  */
-fun <T> loadListData(
+inline fun <T> loadListData(
     data: ListDataUiState<T>,
     baseQuickAdapter: BaseQuickAdapter<T, *>,
     loadService: LoadService<*>,
