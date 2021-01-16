@@ -108,7 +108,7 @@ class MeFragment : BaseFragment<MeViewModel,FragmentMeBinding>() {
         /** 文章 */
         fun ariticle() {
              nav().jumpByLogin {
-//                it.navigateAction(R.id.action_mainfragment_to_ariticleFragment)
+                it.navigateAction(R.id.action_mainfragment_to_ariticleFragment)
                  it.navigateAction(R.id.action_to_loginFragment)
             }
         }

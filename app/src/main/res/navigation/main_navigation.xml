@@ -51,6 +51,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainfragment_to_ariticleFragment"
+            app:destination="@id/ariticleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
        <!-- <action
             android:id="@+id/action_mainfragment_to_searchFragment"
@@ -82,13 +89,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_mainfragment_to_ariticleFragment"
-            app:destination="@id/ariticleFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_mainfragment_to_todoListFragment"
             app:destination="@id/todoListFragment"
@@ -185,6 +186,18 @@
 <!--        <action-->
 <!--            android:id="@+id/action_integralFragment_to_integralHistoryFragment"-->
 <!--            app:destination="@id/integralHistoryFragment"-->
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_right" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/ariticleFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.AriticFragment"
+        android:label="AriticleFragment">
+<!--        <action-->
+<!--            android:id="@+id/action_ariticleFragment_to_addAriticleFragment"-->
+<!--            app:destination="@id/addAriticleFragment"-->
 <!--            app:enterAnim="@anim/slide_in_right"-->
 <!--            app:exitAnim="@anim/slide_out_left"-->
 <!--            app:popEnterAnim="@anim/slide_in_left"-->
