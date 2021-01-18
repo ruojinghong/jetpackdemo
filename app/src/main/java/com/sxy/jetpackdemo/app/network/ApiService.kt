@@ -204,28 +204,28 @@ interface ApiService {
 //    suspend fun getIntegralHistory(@Path("page") page: Int): ApiResponse<ApiPagerResponse<ArrayList<IntegralHistoryResponse>>>
 //
 //
-//    /**
-//     * 获取自己分享的文章列表数据
-//     */
-//    @GET("user/lg/private_articles/{page}/json")
-//    suspend fun getShareData(@Path("page") page: Int): ApiResponse<ShareResponse>
+    /**
+     * 获取自己分享的文章列表数据
+     */
+    @GET("user/lg/private_articles/{page}/json")
+    suspend fun getShareData(@Path("page") page: Int): ApiResponse<ShareResponse>
 //
 //
-//    /**
-//     *  删除自己分享的文章
-//     */
-//    @POST("lg/user_article/delete/{id}/json")
-//    suspend fun deleteShareData(@Path("id") id: Int): ApiResponse<Any?>
+    /**
+     *  删除自己分享的文章
+     */
+    @POST("lg/user_article/delete/{id}/json")
+    suspend fun deleteShareData(@Path("id") id: Int): ApiResponse<Any?>
 //
-//    /**
-//     * 添加文章
-//     */
-//    @POST("lg/user_article/add/json")
-//    @FormUrlEncoded
-//    suspend fun addAriticle(
-//        @Field("title") title: String,
-//        @Field("link") content: String
-//    ): ApiResponse<Any?>
+    /**
+     * 添加文章
+     */
+    @POST("lg/user_article/add/json")
+    @FormUrlEncoded
+    suspend fun addAriticle(
+        @Field("title") title: String,
+        @Field("link") content: String
+    ): ApiResponse<Any?>
 //
 //    /**
 //     * 获取Todo列表数据 根据完成时间排序
