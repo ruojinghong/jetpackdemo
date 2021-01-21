@@ -8,10 +8,10 @@ import com.sxy.jetpackdemo.app.ext.setAdapterAnimation
 import com.sxy.jetpackdemo.app.util.SettingUtil
 
 
-abstract class AbsAnimalAdapter<T,VH: BaseViewHolder>  @JvmOverloads
-constructor(@LayoutRes private val layoutResId: Int,
-            data: MutableList<T>? = null)  : BaseQuickAdapter<T,VH>(layoutResId,data) {
+abstract class AbsAnimalAdapter<T,VH: BaseViewHolder> : BaseQuickAdapter<T,VH> {
 
+    constructor(  layoutResId: Int,
+                data: MutableList<T>? = null) : super(layoutResId,data)
     init {
         setAdapterAnimation(SettingUtil.getListMode())
     }

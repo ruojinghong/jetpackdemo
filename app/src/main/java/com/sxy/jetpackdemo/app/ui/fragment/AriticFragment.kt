@@ -42,7 +42,7 @@ class AriticFragment : BaseFragment<AriticleViewModel,FragmentAriticBinding>() {
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.todo_add -> {
-                        ToastUtils.showShort("nav().navigateAction(R.id.action_ariticleFragment_to_addAriticleFragment)")
+                        nav().navigateAction(R.id.action_ariticleFragment_to_addAriticleFragment)
                     }
                 }
                 true
@@ -76,7 +76,7 @@ class AriticFragment : BaseFragment<AriticleViewModel,FragmentAriticBinding>() {
                     })
                 }
                 addChildClickViewIds(R.id.item_share_del)
-                setOnItemChildClickListener { adapter, view, position ->
+                setOnItemChildClickListener { _, view, position ->
                     when (view.id) {
                         R.id.item_share_del -> {
                             showMessage("确定删除该文章吗？", positiveButtonText = "删除", positiveAction = {
@@ -109,7 +109,7 @@ class AriticFragment : BaseFragment<AriticleViewModel,FragmentAriticBinding>() {
                     if (articleAdapter.data.size == 1) {
                         loadsir.showEmpty()
                     }
-                    articleAdapter.remove(it.data!!)
+                    articleAdapter.removeAt(it.data!!)
                 } else {
                     //删除失败，提示
                     showMessage(it.errorMsg)
