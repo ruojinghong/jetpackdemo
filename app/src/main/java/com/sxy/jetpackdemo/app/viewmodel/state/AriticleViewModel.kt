@@ -1,9 +1,13 @@
 package com.sxy.jetpackdemo.app.viewmodel.state
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.databind.StringObservableField
 
 class AriticleViewModel : BaseViewModel() {
+
 
     //分享文章标题
     var shareTitle = StringObservableField()
