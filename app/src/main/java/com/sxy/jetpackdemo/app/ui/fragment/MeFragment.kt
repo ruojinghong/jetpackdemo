@@ -115,8 +115,8 @@ class MeFragment : BaseFragment<MeViewModel,FragmentMeBinding>() {
 
         fun todo() {
              nav().jumpByLogin {
-//                it.navigateAction(R.id.action_mainfragment_to_todoListFragment)
-                 it.navigateAction(R.id.action_to_loginFragment)
+                it.navigateAction(R.id.action_mainfragment_to_todoListFragment)
+//                 it.navigateAction(R.id.action_to_loginFragment)
             }
         }
 

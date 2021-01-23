@@ -58,7 +58,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-
+        <action
+            android:id="@+id/action_mainfragment_to_todoListFragment"
+            app:destination="@id/todoListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
        <!-- <action
             android:id="@+id/action_mainfragment_to_searchFragment"
             app:destination="@id/searchFragment"
@@ -90,13 +96,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-        <action
-            android:id="@+id/action_mainfragment_to_todoListFragment"
-            app:destination="@id/todoListFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_mainfragment_to_settingFragment"
             app:destination="@id/settingFragment"
@@ -205,6 +205,19 @@
     </fragment>
     <fragment
         android:id="@+id/addAriticleFragment"
-        android:name="me.hgj.jetpackmvvm.demo.ui.fragment.share.AddAriticleFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.AddAriticFragment"
         android:label="AddAriticleFragment" />
+
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="me.hgj.jetpackmvvm.demo.ui.fragment.todo.TodoListFragment"
+        android:label="TodoListFragment">
+<!--        <action-->
+<!--            android:id="@+id/action_todoListFragment_to_addTodoFragment"-->
+<!--            app:destination="@id/addTodoFragment"-->
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_right" />-->
+    </fragment>
 </navigation>
