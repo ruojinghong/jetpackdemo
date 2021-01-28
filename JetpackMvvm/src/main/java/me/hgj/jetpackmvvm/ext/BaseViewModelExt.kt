@@ -249,7 +249,6 @@ suspend fun <T> executeResponse(
  */
 fun <T> BaseViewModel.launch(
     block: () -> T,
-    success: (T) -> Unit,
     error: (Throwable) -> Unit = {}
 ) {
     viewModelScope.launch {

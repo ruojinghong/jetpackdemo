@@ -227,38 +227,38 @@ interface ApiService {
         @Field("link") content: String
     ): ApiResponse<Any?>
 //
-//    /**
-//     * 获取Todo列表数据 根据完成时间排序
-//     */
-//    @GET("/lg/todo/v2/list/{page}/json")
-//    suspend fun getTodoData(@Path("page") page: Int): ApiResponse<ApiPagerResponse<ArrayList<TodoResponse>>>
+    /**
+     * 获取Todo列表数据 根据完成时间排序
+     */
+    @GET("/lg/todo/v2/list/{page}/json")
+    suspend fun getTodoData(@Path("page") page: Int): ApiResponse<ApiPagerResponse<ArrayList<TodoResponse>>>
 //
-//    /**
-//     * 添加一个TODO
-//     */
-//    @POST("/lg/todo/add/json")
-//    @FormUrlEncoded
-//    suspend fun addTodo(
-//        @Field("title") title: String,
-//        @Field("content") content: String,
-//        @Field("date") date: String,
-//        @Field("type") type: Int,
-//        @Field("priority") priority: Int
-//    ): ApiResponse<Any?>
+    /**
+     * 添加一个TODO
+     */
+    @POST("/lg/todo/add/json")
+    @FormUrlEncoded
+    suspend fun addTodo(
+        @Field("title") title: String,
+        @Field("content") content: String,
+        @Field("date") date: String,
+        @Field("type") type: Int,
+        @Field("priority") priority: Int
+    ): ApiResponse<Any?>
 //
-//    /**
-//     * 修改一个TODO
-//     */
-//    @POST("/lg/todo/update/{id}/json")
-//    @FormUrlEncoded
-//    suspend fun updateTodo(
-//        @Field("title") title: String,
-//        @Field("content") content: String,
-//        @Field("date") date: String,
-//        @Field("type") type: Int,
-//        @Field("priority") priority: Int,
-//        @Path("id") id: Int
-//    ): ApiResponse<Any?>
+    /**
+     * 修改一个TODO
+     */
+    @POST("/lg/todo/update/{id}/json")
+    @FormUrlEncoded
+    suspend fun updateTodo(
+        @Field("title") title: String,
+        @Field("content") content: String,
+        @Field("date") date: String,
+        @Field("type") type: Int,
+        @Field("priority") priority: Int,
+        @Path("id") id: Int
+    ): ApiResponse<Any?>
 
     /**
      * 删除一个TODO
