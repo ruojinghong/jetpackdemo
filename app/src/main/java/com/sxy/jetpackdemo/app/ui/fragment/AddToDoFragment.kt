@@ -1,12 +1,21 @@
 package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
+import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
+import com.sxy.jetpackdemo.app.data.model.bean.TodoResponse
+import com.sxy.jetpackdemo.app.data.model.enums.TodoType
+import com.sxy.jetpackdemo.app.ext.showMessage
+import com.sxy.jetpackdemo.app.util.DatetimeUtil
+import com.sxy.jetpackdemo.app.viewmodel.request.RequestTodoViewModel
 import com.sxy.jetpackdemo.app.viewmodel.state.ToDoViewModel
+import com.sxy.jetpackdemo.app.weight.customview.PriorityDialog
 import com.sxy.jetpackdemo.databinding.FragmentAddtodoBinding
+import me.hgj.jetpackmvvm.ext.util.notNull
 import java.util.*
 
 /**
@@ -15,14 +24,16 @@ import java.util.*
  * @description:
  */
 class AddToDoFragment : BaseFragment<ToDoViewModel,FragmentAddtodoBinding>(){
+    private var todoResponse: TodoResponse? = null
 
+    val requestViewModel : RequestTodoViewModel by  viewModels()
 
     inner class ProxyClick {
         /** 选择时间*/
         fun todoTime() {
             activity?.let {
                 MaterialDialog(it)
-                    .lifecycleOwner(this@AddTodoFragment).show {
+                    .lifecycleOwner(this@AddToDoFragment).show {
                         cornerRadius(0f)
                         datePicker(minDate = Calendar.getInstance()) { dialog, date ->
                             mViewModel.todoTime.set(
@@ -88,9 +99,7 @@ class AddToDoFragment : BaseFragment<ToDoViewModel,FragmentAddtodoBinding>(){
         }
     }
 
-    override fun layoutId(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun layoutId(): Int  = R.layout.fragment_addtodo
 
     override fun initView(savedInstanceState: Bundle?) {
         TODO("Not yet implemented")
