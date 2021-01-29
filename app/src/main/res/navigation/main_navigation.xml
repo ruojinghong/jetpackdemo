@@ -210,7 +210,7 @@
 
     <fragment
         android:id="@+id/todoListFragment"
-        android:name="me.hgj.jetpackmvvm.demo.ui.fragment.todo.TodoListFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.TodoListFragment"
         android:label="TodoListFragment">
         <action
             android:id="@+id/action_todoListFragment_to_addTodoFragment"
@@ -223,6 +223,6 @@
 
     <fragment
         android:id="@+id/addTodoFragment"
-        android:name="me.hgj.jetpackmvvm.demo.ui.fragment.todo.AddTodoFragment"
+        android:name="com.sxy.jetpackdemo.app.ui.fragment.AddToDoFragment"
         android:label="AddTodoFragment" />
 </navigation>

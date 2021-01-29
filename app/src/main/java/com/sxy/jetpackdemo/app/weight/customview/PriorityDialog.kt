@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.LogUtils
 import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.data.model.enums.TodoType
 import com.sxy.jetpackdemo.app.ui.adapter.PriorityAdapter
@@ -47,6 +48,7 @@ class PriorityDialog(context: Context, type: Int) : Dialog(context, R.style.Bott
             proiorityData.add(it)
         }
 
+
         //初始化adapter
         shareAdapter = PriorityAdapter(proiorityData, type).apply {
             setOnItemClickListener { adapter, view1, position ->
@@ -63,7 +65,7 @@ class PriorityDialog(context: Context, type: Int) : Dialog(context, R.style.Bott
             context?.let {
                 layoutManager = GridLayoutManager(it, 3)
                 setHasFixedSize(true)
-//                addItemDecoration(GridDividerItemDecoration(it, 0, ConvertUtils.dp2px(24f), false))
+                addItemDecoration(GridDividerItemDecoration(it, 0, ConvertUtils.dp2px(24f), false))
                 adapter = shareAdapter
             }
         }

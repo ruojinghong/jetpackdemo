@@ -13,7 +13,7 @@ import com.sxy.jetpackdemo.app.weight.preference.MyColorCircleView
  * @description:
  */
 class PriorityAdapter(data : ArrayList<TodoType>)
-    : BaseQuickAdapter<TodoType,BaseViewHolder>(R.layout.item_todo_dialog) {
+    : BaseQuickAdapter<TodoType,BaseViewHolder>(R.layout.item_todo_dialog,data) {
     var checkType = TodoType.TodoType1.type
     constructor(data: ArrayList<TodoType>, checkType: Int):this(data){
         this.checkType = checkType

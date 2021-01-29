@@ -31,9 +31,5 @@ class ToDoViewModel : BaseViewModel() {
     var todoColor =
         IntObservableField(TodoType.TodoType1.color)
 
-    fun xx(): Unit {
-        launch({
 
-        })
-    }
 }

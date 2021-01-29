@@ -9,12 +9,17 @@ import com.sxy.jetpackdemo.R
 import com.sxy.jetpackdemo.app.base.activity.BaseFragment
 import com.sxy.jetpackdemo.app.data.model.bean.TodoResponse
 import com.sxy.jetpackdemo.app.data.model.enums.TodoType
+import com.sxy.jetpackdemo.app.ext.initClose
 import com.sxy.jetpackdemo.app.ext.showMessage
 import com.sxy.jetpackdemo.app.util.DatetimeUtil
+import com.sxy.jetpackdemo.app.util.SettingUtil
 import com.sxy.jetpackdemo.app.viewmodel.request.RequestTodoViewModel
 import com.sxy.jetpackdemo.app.viewmodel.state.ToDoViewModel
 import com.sxy.jetpackdemo.app.weight.customview.PriorityDialog
 import com.sxy.jetpackdemo.databinding.FragmentAddtodoBinding
+import kotlinx.android.synthetic.main.fragment_addtodo.*
+import kotlinx.android.synthetic.main.include_toolbar.*
+import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.util.notNull
 import java.util.*
 
@@ -23,10 +28,50 @@ import java.util.*
  * @date: 2021/1/28
  * @description:
  */
-class AddToDoFragment : BaseFragment<ToDoViewModel,FragmentAddtodoBinding>(){
+class AddToDoFragment : BaseFragment<ToDoViewModel, FragmentAddtodoBinding>() {
     private var todoResponse: TodoResponse? = null
 
-    val requestViewModel : RequestTodoViewModel by  viewModels()
+    val requestViewModel: RequestTodoViewModel by viewModels()
+
+
+    override fun layoutId(): Int = R.layout.fragment_addtodo
+
+    override fun initView(savedInstanceState: Bundle?) {
+        mDatabind.vm = mViewModel
+        mDatabind.click = ProxyClick()
+        arguments?.let {
+            todoResponse = it.getParcelable("todo")
+            todoResponse?.let { todo ->
+                mViewModel.todoTitle.set(todo.title)
+                mViewModel.todoContent.set(todo.content)
+                mViewModel.todoTime.set(todo.dateStr)
+                mViewModel.todoLeve.set(TodoType.byType(todo.priority).content)
+                mViewModel.todoColor.set(TodoType.byType(todo.priority).color)
+            }
+        }
+        toolbar.initClose(if (todoResponse == null) "添加TODO" else "修改TODO") {
+            nav().navigateUp()
+        }
+        appViewModel.appColor.value?.let { SettingUtil.setShapColor(addtodoSubmit, it) }
+    }
+
+    override fun createObserver() {
+        super.createObserver()
+            requestViewModel.updateDataState.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                if (it.isSuccess) {
+                    //添加TODO成功 返回并发送消息回调
+                    nav().navigateUp()
+                    eventViewModel.todoEvent.setValue(false)
+                } else {
+                    showMessage(it.errorMsg)
+                }
+
+            })
+    }
+
+    override fun lazyLoadData() {
+        super.lazyLoadData()
+    }
 
     inner class ProxyClick {
         /** 选择时间*/
@@ -98,11 +143,4 @@ class AddToDoFragment : BaseFragment<ToDoViewModel,FragmentAddtodoBinding>(){
             }
         }
     }
-
-    override fun layoutId(): Int  = R.layout.fragment_addtodo
-
-    override fun initView(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
-    }
-
 }

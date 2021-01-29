@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.sxy.jetpackdemo.app.weight.preference.MyColorCircleView
 import me.hgj.jetpackmvvm.ext.view.textString
 
 /**
@@ -57,5 +58,11 @@ object CustomBindAdapter {
     @JvmStatic
     fun checkChange(checkbox: CheckBox, listener: CompoundButton.OnCheckedChangeListener) {
         checkbox.setOnCheckedChangeListener(listener)
+    }
+
+    @BindingAdapter(value = ["colorCircleViewColor"])
+    @JvmStatic
+    fun colorCircleViewColor(view: MyColorCircleView, color: Int) {
+        view.setView(color)
     }
 }
