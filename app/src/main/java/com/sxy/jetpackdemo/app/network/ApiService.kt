@@ -80,14 +80,14 @@ interface ApiService {
 //    @GET("wxarticle/chapters/json")
 //    suspend fun getPublicTitle(): ApiResponse<ArrayList<ClassifyResponse>>
 //
-//    /**
-//     * 获取公众号数据
-//     */
-//    @GET("wxarticle/list/{id}/{page}/json")
-//    suspend fun getPublicData(
-//        @Path("page") pageNo: Int,
-//        @Path("id") id: Int
-//    ): ApiResponse<ApiPagerResponse<ArrayList<AriticleResponse>>>
+    /**
+     * 获取公众号数据
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    suspend fun getPublicData(
+        @Path("page") pageNo: Int,
+        @Path("id") id: Int
+    ): ApiResponse<ApiPagerResponse<ArrayList<AriticleResponse>>>
 //
 //    /**
 //     * 获取热门搜索数据
@@ -95,14 +95,14 @@ interface ApiService {
 //    @GET("hotkey/json")
 //    suspend fun getSearchData(): ApiResponse<ArrayList<SearchResponse>>
 //
-//    /**
-//     * 根据关键词搜索数据
-//     */
-//    @POST("article/query/{page}/json")
-//    suspend fun getSearchDataByKey(
-//        @Path("page") pageNo: Int,
-//        @Query("k") searchKey: String
-//    ): ApiResponse<ApiPagerResponse<ArrayList<AriticleResponse>>>
+    /**
+     * 根据关键词搜索数据
+     */
+    @POST("article/query/{page}/json")
+    suspend fun getSearchDataByKey(
+        @Path("page") pageNo: Int,
+        @Query("k") searchKey: String
+    ): ApiResponse<ApiPagerResponse<ArrayList<AriticleResponse>>>
 //
 //    /**
 //     * 广场列表数据
