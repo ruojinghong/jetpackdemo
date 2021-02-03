@@ -15,13 +15,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_to_webFragment"
-            app:destination="@id/webFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_mainfragment_to_lookInfoFragment"
             app:destination="@id/lookInfoFragment"
@@ -232,4 +226,12 @@
         android:id="@+id/settingFragment"
         android:name="com.sxy.jetpackdemo.app.ui.fragment.SettingFragment"
         android:label="SettingFragment" />
+
+    <action
+        android:id="@+id/action_to_webFragment"
+        app:destination="@id/webFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 </navigation>

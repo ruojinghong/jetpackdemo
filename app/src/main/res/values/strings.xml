@@ -27,7 +27,7 @@
     <string name="author">作者</string>
     <string name="author_name">一个练习时长两年半的安卓开发者→_→</string>
     <string name="project_address">项目源码</string>
-    <string name="github_url">https://github.com/hegaojian/JetpackMvvm</string>
+    <string name="github_url">https://github.com/ruojinghong/jetpackdemo</string>
     <string name="open_project">开源项目</string>
     <string name="open_project_tips">项目中用到的开源库</string>
     <string name="error_occurred">不好意思App翻车了。\n请拿已复制好的错误日志去啪啪啪得打作者的脸</string>

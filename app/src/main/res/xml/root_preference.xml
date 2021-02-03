@@ -8,6 +8,7 @@
             android:key="top"
             android:summary="@string/setting_toptip"
             android:title="@string/setting_top" />
+
         <Preference
             android:key="clearCache"
             android:title="@string/clear_cache" />
@@ -15,7 +16,9 @@
             android:key="exit"
             android:summary="退出登录"
             android:title="@string/setting_exit" />
-
+        <EditTextPreference
+            android:key="edit"
+            android:title="edittext"/>
     </com.sxy.jetpackdemo.app.weight.preference.PreferenceCategory>
 
     <com.sxy.jetpackdemo.app.weight.preference.PreferenceCategory
