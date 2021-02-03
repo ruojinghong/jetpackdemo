@@ -135,13 +135,13 @@ class MeFragment : BaseFragment<MeViewModel,FragmentMeBinding>() {
 
         /** 加入我们 */
         fun join() {
-//            joinQQGroup("9n4i5sHt4189d4DvbotKiCHy-5jZtD4D")
+            joinQQGroup("9n4i5sHt4189d4DvbotKiCHy-5jZtD4D")
         }
 
         /** 设置*/
         fun setting() {
-//             nav().navigateAction(R.id.action_mainfragment_to_settingFragment)
-            nav().navigateAction(R.id.action_to_loginFragment)
+             nav().navigateAction(R.id.action_mainfragment_to_settingFragment)
+//            nav().navigateAction(R.id.action_to_loginFragment)
         }
 
         /**demo*/

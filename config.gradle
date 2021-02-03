@@ -86,6 +86,8 @@ ext{
             "agentWeb": "com.just.agentweb:agentweb:4.1.4",
             //指示器库
             "MagicIndicator": "com.github.hackware1993:MagicIndicator:1.6.0",
+            //settingfragment设置页
+            "preference": "androidx.preference:preference-ktx:1.1.1",
     ]
 
 
