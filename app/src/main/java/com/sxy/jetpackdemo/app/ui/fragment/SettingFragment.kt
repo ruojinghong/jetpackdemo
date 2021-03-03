@@ -2,12 +2,14 @@ package com.sxy.jetpackdemo.app.ui.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.viewModelScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.afollestad.materialdialogs.MaterialDialog
@@ -17,8 +19,8 @@ import com.afollestad.materialdialogs.color.colorChooser
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.LogUtils
 import com.sxy.jetpackdemo.R
-import com.sxy.jetpackdemo.app.base.activity.BaseFragment
 import com.sxy.jetpackdemo.app.base.event.AppViewModel
 import com.sxy.jetpackdemo.app.data.model.bean.BannerResponse
 import com.sxy.jetpackdemo.app.ext.initClose
@@ -32,9 +34,16 @@ import com.sxy.jetpackdemo.app.weight.preference.CheckBoxPreference
 import com.sxy.jetpackdemo.app.weight.preference.IconPreference
 import com.sxy.jetpackdemo.app.weight.preference.PreferenceCategory
 import com.tencent.bugly.beta.Beta
+import kotlinx.coroutines.runBlocking
 import me.hgj.jetpackmvvm.ext.getAppViewModel
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
+import me.hgj.jetpackmvvm.network.NetworkUtil.url
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import kotlin.concurrent.thread
+
 
 /**
  * @author: sxy
@@ -55,15 +64,77 @@ class SettingFragment : PreferenceFragmentCompat()
         containerView.let {
                 var linearLayout = it.parent as? LinearLayout
                 linearLayout?.run {
-                    toolbarView = LayoutInflater.from(context).inflate(R.layout.include_toolbar,null)
+                    toolbarView = LayoutInflater.from(context).inflate(
+                        R.layout.include_toolbar,
+                        null
+                    )
                     toolbarView?.let {
 
                         it.findViewById<Toolbar>(R.id.toolbar)?.initClose("设置"){
                                 nav().navigateUp()
                         }
                     }
-                    addView(toolbarView,0)
+                    addView(toolbarView, 0)
                 }
+        }
+        val client = OkHttpClient().newBuilder()
+            .build()
+//            thread {
+////                for (i in 984141131..1000000000) {
+//                for (i in 984147298..1000000000) {
+//                    val request: Request = Request.Builder()
+//                        .url("http://8.210.46.21:9090/voice/6000000${i}.mp3")
+//                        .method("GET", null)
+//                        .build()
+//                    val response: Response = client.newCall(request).execute()
+//                    if (response.code() == 200) {
+//                        Log.i("hahahhaa", i.toString())
+//                    }
+//                }
+//            }
+
+
+
+//        thread {
+////                for (i in 2128986517..1000000000) {
+//            for (i in 2128986500..1000000000) {
+//                val request: Request = Request.Builder()
+//                    .url("http://8.210.46.21:9090/voice/6000000${i}.mp3")
+//                    .method("GET", null)
+//                    .build()
+//                val response: Response = client.newCall(request).execute()
+//                if (response.code() == 200) {
+//                    Log.i("hahahhaa", i.toString())
+//                }
+//            }
+//        }
+
+//        thread {
+////                for (i in 2128986517..1000000000) {
+//            for (i in 4318491710..1000000000) {
+//                val request: Request = Request.Builder()
+//                    .url("http://8.210.46.21:9090/voice/6000000${i}.wav")
+//                    .method("GET", null)
+//                    .build()
+//                val response: Response = client.newCall(request).execute()
+//                if (response.code() == 200) {
+//                    Log.i("hahahhaa", i.toString())
+//                }
+//            }
+//        }
+
+        thread {
+//                for (i in 2128986517..1000000000) {
+            for (i in 818239513..1000000000) {
+                val request: Request = Request.Builder()
+                    .url("http://8.210.46.21:9090/voice/6000000${i}.mp3")
+                    .method("GET", null)
+                    .build()
+                val response: Response = client.newCall(request).execute()
+                if (response.code() == 200) {
+                    Log.i("hahahhaa", i.toString())
+                }
+            }
         }
 
 
